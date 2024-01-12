@@ -1,16 +1,21 @@
 ### github使用
 1.登录/注册`github.com`，fork这个项目：`https://github.com/GKFXCode/SimpleTowerDefense`
+
 2.将fork后的项目clone到本地
 ```bash
 git clone [项目地址]
 ```
+
 3.在`github.com`网站上生成Token
 点击github右上角头像，点击settings，然后点击左侧导航栏最下方的Developer Settings，然后点击Personal Access Tokens，然后点击Generate new token，选择仓库的读写权限后点击Generate。
 参考:`https://blog.csdn.net/chengwenyang/article/details/120060010`
+
 4.`git remote remove origin`
 删除现在的远程分支，然后利用Token创建新的远程分支
 `git remote add origin https://[TOKEN]@github.com/[username]/[repo_name]`
+
 5.编写代码并测试
+
 6.将代码同步到fork得到的github仓库中
 ```bash
 git add [文件]
