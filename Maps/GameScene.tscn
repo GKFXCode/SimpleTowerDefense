@@ -1,0 +1,241 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Maps/Map0.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/UI/blue_button12.png" type="Texture" id=2]
+[ext_resource path="res://Assets/UI/fastForward.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Towers/towerDefense_tile249.png" type="Texture" id=4]
+[ext_resource path="res://Assets/UI/pause.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Towers/towerDefense_tile251.png" type="Texture" id=6]
+[ext_resource path="res://Assets/UI/right.png" type="Texture" id=7]
+[ext_resource path="res://Maps/GameScene.gd" type="Script" id=8]
+[ext_resource path="res://Assets/UI/home.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Fonts/kfn_40_o1.tres" type="DynamicFont" id=10]
+[ext_resource path="res://Assets/Enemies/HPbar.jpg" type="Texture" id=11]
+[ext_resource path="res://Assets/Towers/bomb.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Towers/flame.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Towers/rock.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Towers/snowflake.png" type="Texture" id=15]
+
+[node name="GameScene" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="Map0" parent="." instance=ExtResource( 1 )]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="BuildBar" type="VBoxContainer" parent="UI/HUD"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -500.0
+margin_right = 100.0
+rect_min_size = Vector2( 100, 400 )
+
+[node name="Gun" type="TextureButton" parent="UI/HUD/BuildBar" groups=["build_buttons"]]
+margin_left = 10.0
+margin_right = 90.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 80, 80 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="TextureRect" type="TextureRect" parent="UI/HUD/BuildBar/Gun"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+texture = ExtResource( 4 )
+
+[node name="Missile" type="TextureButton" parent="UI/HUD/BuildBar" groups=["build_buttons"]]
+margin_left = 10.0
+margin_top = 84.0
+margin_right = 90.0
+margin_bottom = 164.0
+rect_min_size = Vector2( 80, 80 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="TextureRect" type="TextureRect" parent="UI/HUD/BuildBar/Missile"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+texture = ExtResource( 6 )
+
+[node name="Bomb" type="TextureButton" parent="UI/HUD/BuildBar" groups=["build_buttons"]]
+margin_left = 10.0
+margin_top = 168.0
+margin_right = 90.0
+margin_bottom = 248.0
+rect_min_size = Vector2( 80, 80 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="TextureRect" type="TextureRect" parent="UI/HUD/BuildBar/Bomb"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+texture = ExtResource( 12 )
+
+[node name="Ice" type="TextureButton" parent="UI/HUD/BuildBar" groups=["build_buttons"]]
+margin_left = 10.0
+margin_top = 252.0
+margin_right = 90.0
+margin_bottom = 332.0
+rect_min_size = Vector2( 80, 80 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="TextureRect" type="TextureRect" parent="UI/HUD/BuildBar/Ice"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+texture = ExtResource( 15 )
+
+[node name="Flamethrower" type="TextureButton" parent="UI/HUD/BuildBar" groups=["build_buttons"]]
+margin_left = 10.0
+margin_top = 336.0
+margin_right = 90.0
+margin_bottom = 416.0
+rect_min_size = Vector2( 80, 80 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="TextureRect" type="TextureRect" parent="UI/HUD/BuildBar/Flamethrower"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+texture = ExtResource( 13 )
+
+[node name="Summoning" type="TextureButton" parent="UI/HUD/BuildBar" groups=["build_buttons"]]
+margin_left = 10.0
+margin_top = 420.0
+margin_right = 90.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 80, 80 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="TextureRect" type="TextureRect" parent="UI/HUD/BuildBar/Summoning"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+texture = ExtResource( 14 )
+
+[node name="GameControl" type="HBoxContainer" parent="UI/HUD"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -144.0
+margin_top = -100.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Pause" type="TextureButton" parent="UI/HUD/GameControl"]
+pause_mode = 2
+margin_top = 15.0
+margin_right = 70.0
+margin_bottom = 85.0
+rect_min_size = Vector2( 70, 70 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 5 )
+expand = true
+
+[node name="SpeedUP" type="TextureButton" parent="UI/HUD/GameControl"]
+margin_left = 74.0
+margin_top = 15.0
+margin_right = 144.0
+margin_bottom = 85.0
+rect_min_size = Vector2( 70, 70 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="InfoBar" type="ColorRect" parent="UI/HUD"]
+self_modulate = Color( 0, 0, 0, 0.470588 )
+anchor_right = 1.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 0, 60 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/InfoBar"]
+anchor_right = 1.0
+margin_bottom = 60.0
+
+[node name="MoneySymbol" type="Label" parent="UI/HUD/InfoBar/HBoxContainer"]
+margin_right = 120.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 120, 60 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.470588 )
+custom_fonts/font = ExtResource( 10 )
+text = "$"
+align = 2
+valign = 1
+
+[node name="Money" type="Label" parent="UI/HUD/InfoBar/HBoxContainer"]
+margin_left = 124.0
+margin_right = 244.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 120, 60 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.470588 )
+custom_fonts/font = ExtResource( 10 )
+text = "9999"
+align = 2
+valign = 1
+
+[node name="Icon" type="TextureRect" parent="UI/HUD/InfoBar/HBoxContainer"]
+margin_left = 812.0
+margin_right = 872.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 10
+texture = ExtResource( 9 )
+expand = true
+
+[node name="HP" type="TextureProgress" parent="UI/HUD/InfoBar/HBoxContainer"]
+margin_left = 876.0
+margin_top = 15.0
+margin_right = 1276.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 400, 30 )
+size_flags_vertical = 4
+value = 100.0
+texture_under = ExtResource( 11 )
+texture_progress = ExtResource( 11 )
+tint_under = Color( 0.290196, 0.262745, 0.262745, 1 )
+tint_progress = Color( 0.0862745, 0.905882, 0.176471, 1 )
+nine_patch_stretch = true
+
+[node name="Tween" type="Tween" parent="UI/HUD/InfoBar/HBoxContainer/HP"]
+
+[node name="Control" type="Control" parent="UI/HUD/InfoBar/HBoxContainer"]
+margin_left = 1280.0
+margin_right = 1280.0
+margin_bottom = 60.0
+
+[connection signal="pressed" from="UI/HUD/GameControl/Pause" to="." method="_on_Pause_pressed"]
+[connection signal="pressed" from="UI/HUD/GameControl/SpeedUP" to="." method="_on_SpeedUP_pressed"]

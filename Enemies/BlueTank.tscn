@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Enemies/tank_blue.png" type="Texture" id=1]
+[ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemies/BlueTank.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 20.0
+height = 0.0
+
+[node name="BlueTank" instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" parent="KinematicBody2D" index="0"]
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 1 )

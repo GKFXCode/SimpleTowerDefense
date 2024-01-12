@@ -1,0 +1,137 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/Towers/towerDefense_tile251.png" type="Texture" id=1]
+[ext_resource path="res://Towers/Tower.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Towers/towerDefense_tile180.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Towers/towerDefense_tile228.png" type="Texture" id=4]
+[ext_resource path="res://Towers/MissileT1.gd" type="Script" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Turret/Missile1/Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Turret/Missile2/Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "fire"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Turret/Missile1/Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Turret/Missile2/Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "ready"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Turret/Missile2/Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Turret/Missile1/Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_ready"
+} ]
+}
+
+[node name="MissileT1" instance=ExtResource( 2 )]
+script = ExtResource( 5 )
+
+[node name="Base" parent="." index="0"]
+texture = ExtResource( 3 )
+
+[node name="Turret" parent="." index="1"]
+texture = ExtResource( 4 )
+
+[node name="Missile1" type="Position2D" parent="Turret" index="0"]
+position = Vector2( 0, -10 )
+
+[node name="Sprite" type="Sprite" parent="Turret/Missile1" index="0"]
+position = Vector2( 12, 0 )
+texture = ExtResource( 1 )
+
+[node name="Missile2" type="Position2D" parent="Turret" index="1"]
+position = Vector2( 0, 10 )
+
+[node name="Sprite" type="Sprite" parent="Turret/Missile2" index="0"]
+position = Vector2( 12, 0 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" parent="Range" index="0"]
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" parent="." index="3"]
+anims/RESET = SubResource( 2 )
+anims/fire = SubResource( 3 )
+anims/ready = SubResource( 4 )
