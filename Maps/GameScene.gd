@@ -8,6 +8,7 @@ var build_type:String
 var build_location:Vector2
 var build_tile
 var base_health = 100
+var money = 200
 
 signal game_finished(result)
 signal game_restart
@@ -16,9 +17,11 @@ onready var ui = get_node("UI")
 onready var map_node = get_node("Map0")
 onready var hp_bar = get_node("UI/HUD/InfoBar/HBoxContainer/HP")
 onready var hp_bar_tween = get_node("UI/HUD/InfoBar/HBoxContainer/HP/Tween")
+onready var money_label = get_node("UI/HUD/InfoBar/HBoxContainer/Money")
 const preview_color = "ad54ff3c"
 
 func _ready():
+    money_label.text = str(money)
     for build_button in get_tree().get_nodes_in_group("build_buttons"):
         build_button.connect("pressed", self, "init_build_mode", [build_button.get_name()])
     
@@ -42,6 +45,8 @@ func init_build_mode(tower_type:String):
     if build_mode:
         cancel_build_mode()
     build_type = tower_type + "T1"
+    if GameData.tower_data[build_type].cost > money:
+        return
     build_mode = true
     var tower = load("res://Towers/" + build_type + ".tscn").instance()
     tower.set_name("PreviewTower")
@@ -89,6 +94,8 @@ func verify_and_build():
         new_tower.built = true
         map_node.get_node("Towers").add_child(new_tower, true)
         map_node.get_node("TowerExclusion").set_cellv(build_tile, 6)
+        money -= GameData.tower_data[build_type].cost
+        money_label.text = str(money)
 
 
 func _on_Pause_pressed():
