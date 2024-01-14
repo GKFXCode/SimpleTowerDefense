@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Maps/Map0.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/UI/blue_button12.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Assets/Towers/rock.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Towers/snowflake.png" type="Texture" id=15]
 [ext_resource path="res://Assets/UI/return.png" type="Texture" id=16]
+[ext_resource path="res://Assets/UI/restart.png" type="Texture" id=17]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource( 8 )
@@ -148,7 +149,7 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -218.0
+margin_left = -292.0
 margin_top = -100.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -179,8 +180,19 @@ expand = true
 
 [node name="Restart" type="TextureButton" parent="UI/HUD/GameControl"]
 margin_left = 148.0
+margin_top = 25.0
+margin_right = 198.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 50, 50 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 17 )
+expand = true
+
+[node name="Return" type="TextureButton" parent="UI/HUD/GameControl"]
+margin_left = 202.0
 margin_top = 15.0
-margin_right = 218.0
+margin_right = 272.0
 margin_bottom = 85.0
 rect_min_size = Vector2( 70, 70 )
 size_flags_horizontal = 4
@@ -252,3 +264,4 @@ margin_bottom = 60.0
 [connection signal="pressed" from="UI/HUD/GameControl/Pause" to="." method="_on_Pause_pressed"]
 [connection signal="pressed" from="UI/HUD/GameControl/SpeedUP" to="." method="_on_SpeedUP_pressed"]
 [connection signal="pressed" from="UI/HUD/GameControl/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="UI/HUD/GameControl/Return" to="." method="_on_Return_pressed"]

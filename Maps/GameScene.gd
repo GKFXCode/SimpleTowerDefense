@@ -10,6 +10,7 @@ var build_tile
 var base_health = 100
 
 signal game_finished(result)
+signal game_restart
 
 onready var ui = get_node("UI")
 onready var map_node = get_node("Map0")
@@ -118,8 +119,11 @@ func _on_SpeedUP_pressed():
         
         
 func _on_Restart_pressed() -> void:
-    emit_signal("game_finished", false)
-    
+    print("emit restart")
+    emit_signal("game_restart") 
+
+func _on_Return_pressed() -> void:
+    emit_signal("game_finished", false) 
     
 func update_health_bar(base_health):
     hp_bar_tween.interpolate_property(hp_bar, "value", 
@@ -132,6 +136,8 @@ func on_base_damage(damage):
         emit_signal("game_finished", false)
     else:
         update_health_bar(base_health)
+
+
 
 
 
