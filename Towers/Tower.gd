@@ -6,10 +6,12 @@ var ready:bool = true
 var tower_type:String
 var enemy_array = []
 var enemy: Enemy = null
+onready var range_texture = get_node("Range/Sprite")
 
 func _ready():
     get_node("Range/CollisionShape2D").get_shape().radius = 0.5*GameData.tower_data[tower_type]["range"] 
-    print(get_node("Range/CollisionShape2D").get_shape().radius)
+    var scaling = GameData.tower_data[tower_type]["range"]/600.0
+    range_texture.scale = Vector2(scaling, scaling)
 
 func _physics_process(delta):
     if not enemy_array.empty() and built:
@@ -41,3 +43,11 @@ func _on_Range_body_entered(body):
 
 func _on_Range_body_exited(body):
     enemy_array.erase(body.get_parent())
+
+
+func _on_SelectArea_mouse_entered() -> void:
+    range_texture.visible = true
+
+
+func _on_SelectArea_mouse_exited() -> void:
+    range_texture.visible = false

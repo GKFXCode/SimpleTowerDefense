@@ -1,8 +1,12 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Towers/Tower.gd" type="Script" id=1]
+[ext_resource path="res://Assets/UI/range_overlay.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 29.1548
 
 [node name="Tower" type="Node2D"]
 script = ExtResource( 1 )
@@ -20,7 +24,21 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
 shape = SubResource( 1 )
 
+[node name="Sprite" type="Sprite" parent="Range"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.490196 )
+scale = Vector2( 1e-05, 1e-05 )
+texture = ExtResource( 2 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="SelectArea" type="Area2D" parent="."]
+position = Vector2( 32, 32 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SelectArea"]
+shape = SubResource( 2 )
 
 [connection signal="body_entered" from="Range" to="." method="_on_Range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_Range_body_exited"]
+[connection signal="mouse_entered" from="SelectArea" to="." method="_on_SelectArea_mouse_entered"]
+[connection signal="mouse_exited" from="SelectArea" to="." method="_on_SelectArea_mouse_exited"]
