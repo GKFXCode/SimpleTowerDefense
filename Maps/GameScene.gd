@@ -115,6 +115,11 @@ func _on_SpeedUP_pressed():
         Engine.set_time_scale(1.0)
     else:
         Engine.set_time_scale(2.0)
+        
+        
+func _on_Restart_pressed() -> void:
+    emit_signal("game_finished", false)
+    
     
 func update_health_bar(base_health):
     hp_bar_tween.interpolate_property(hp_bar, "value", 
@@ -127,3 +132,6 @@ func on_base_damage(damage):
         emit_signal("game_finished", false)
     else:
         update_health_bar(base_health)
+
+
+
