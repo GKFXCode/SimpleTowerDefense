@@ -5,6 +5,8 @@ var type:String
 var speed:int
 var hp:int
 var base_damage:int
+var origin_speed: int
+var frozen_ratio: float = 1.0
 
 # 状态
 var ignited:bool = false
@@ -12,6 +14,8 @@ var frozen:bool = false
 
 onready var healthbar = get_node("HealthBar")
 onready var impact_area = get_node("Impact")
+
+
 var projecttile_impact = preload("res://Bullets/ProjecttileImpact.tscn") 
 signal dead
 signal base_damage(damage)
@@ -51,5 +55,19 @@ func hit_effect(tower_type:String):
         var new_impact  = projecttile_impact.instance()
         new_impact.position = impact_loaction
         impact_area.add_child(new_impact)
-        
-    
+    elif tower_type == "IceT1":
+        var frozen_timer:Timer = get_node("Frozen_timer")
+        frozen_timer.connect("timeout", self, "_on_frozen_timer_timeout")
+        if not frozen:
+            frozen = true
+            origin_speed = speed
+            speed = speed * frozen_ratio
+            frozen_timer.start()
+        else:
+            frozen_timer.stop()
+            frozen_timer.start()
+            
+func _on_frozen_timer_timeout():
+    if frozen:
+        frozen = false
+        speed = origin_speed    
