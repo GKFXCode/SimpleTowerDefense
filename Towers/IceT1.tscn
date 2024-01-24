@@ -1,12 +1,17 @@
 [gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Towers/Tower.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Towers/IceT1.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Towers/snowflake.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Towers/snowflake.png" type="Texture" id=3]
 [ext_resource path="res://Assets/UI/fastForward.png" type="Texture" id=4]
 
 [node name="IceT1" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+
+[node name="Base" parent="." index="0"]
+texture = ExtResource( 3 )
 frozen_ratio = 0.5
 frozen_time = 5
 damage = 1
